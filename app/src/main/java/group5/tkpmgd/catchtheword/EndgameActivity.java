@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EndgameActivity extends AppCompatActivity {
     ImageView btnBack;
@@ -29,7 +30,7 @@ public class EndgameActivity extends AppCompatActivity {
         btnReplay= this.<Button>findViewById(R.id.btnReplay);
         btnHome= this.<Button>findViewById(R.id.btnHome);
         tvScore.setText(String.valueOf(MainActivity.totalscore));
-        tvCurScore.setText(String.valueOf(MainActivity.totalscore));
+        tvCurScore.setText("SCORE: "+String.valueOf(MainActivity.totalscore));
     }
 
     private void AddEvents() {
@@ -49,7 +50,7 @@ public class EndgameActivity extends AppCompatActivity {
                 PlayActivity.LayCauHoi();
                 ContentValues row = new ContentValues();
 
-                row.put("score", MainActivity.totalscore);
+                row.put("totalscore", MainActivity.totalscore);
                 row.put("current", 1);
                 MainActivity.database.insert("score", null, row);
 
@@ -63,7 +64,7 @@ public class EndgameActivity extends AppCompatActivity {
                 PlayActivity.tvKey.setText("");
                 PlayActivity.txtAnswer.setText("");
                 ContentValues row = new ContentValues();
-                row.put("score", MainActivity.totalscore);
+                row.put("totalscore", MainActivity.totalscore);
                 row.put("current", 1);
                 MainActivity.database.insert("score", null, row);
                 onBackPressed();
@@ -76,9 +77,9 @@ public class EndgameActivity extends AppCompatActivity {
     {
         ContentValues row = new ContentValues();
         row.put("current",0);
-        MainActivity.database.update("score",row,"playtimes=?",
+        row.put("totalscore",MainActivity.totalscore);
+        long i = MainActivity.database.update("score",row,"playtimes=?",
                 new String[]{String.valueOf(MainActivity.playtime)});
-
 
         //tìm điểm cao nhất
         Cursor cursor = MainActivity.database.query("score",null,null,
@@ -86,9 +87,10 @@ public class EndgameActivity extends AppCompatActivity {
         int MaxScore=0;
         while (cursor.moveToNext())
         {
-            if (cursor.getInt(1)>MaxScore)
-                MaxScore=cursor.getInt(1);
+            int item = cursor.getInt(1);
+            if (item>MaxScore)
+                MaxScore=item;
         }
-        tvBestScore.setText("YOUR BEST SCORE "+String.valueOf(MaxScore));
+        tvBestScore.setText("BEST SCORE: "+String.valueOf(MaxScore));
     }
 }

@@ -92,7 +92,7 @@ public class PlayActivity extends AppCompatActivity {
                     tvScore.setText(String.valueOf(MainActivity.totalscore));
 
                     ContentValues row = new ContentValues();
-                    row.put("score",MainActivity.totalscore);
+                    row.put("totalscore",MainActivity.totalscore);
                     MainActivity.database.update("score",row,"playtimes=?",
                             new String[]{String.valueOf(MainActivity.playtime)});
                 }
@@ -118,7 +118,7 @@ public class PlayActivity extends AppCompatActivity {
                     tvScore.setText(String.valueOf(MainActivity.totalscore));
 
                     ContentValues row = new ContentValues();
-                    row.put("score",MainActivity.totalscore);
+                    row.put("totalscore",MainActivity.totalscore);
                     MainActivity.database.update("score",row,"playtimes=?",
                             new String[]{String.valueOf(MainActivity.playtime)});
                 }
@@ -144,7 +144,7 @@ public class PlayActivity extends AppCompatActivity {
                     tvScore.setText(String.valueOf(MainActivity.totalscore));
 
                     ContentValues row = new ContentValues();
-                    row.put("score",MainActivity.totalscore);
+                    row.put("totalscore",MainActivity.totalscore);
                     MainActivity.database.update("score",row,"playtimes=?",
                             new String[]{String.valueOf(MainActivity.playtime)});
                 }
@@ -183,6 +183,7 @@ public class PlayActivity extends AppCompatActivity {
                     ContentValues row = new ContentValues();
                     row.put("finished",0);
                     long i = MainActivity.database.update("question",row,null,null);
+
                     Intent intent = new Intent(PlayActivity.this,EndgameActivity.class);
                     startActivity(intent);
                 }

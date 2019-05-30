@@ -75,9 +75,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if (!isCurrent) {
                     ContentValues row = new ContentValues();
-                    row.put("score", MainActivity.totalscore);
+                    row.put("totalscore", MainActivity.totalscore);
                     row.put("current", 1);
-                    MainActivity.database.insert("score", null, row);
+                    long i = MainActivity.database.insert("score", null, row);
                 }
                 Intent intent = new Intent(MainActivity.this,PlayActivity.class);
                 startActivity(intent);

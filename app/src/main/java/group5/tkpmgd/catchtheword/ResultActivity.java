@@ -92,10 +92,9 @@ public class ResultActivity extends AppCompatActivity {
         tvThongBao.setText("Congratulation, 10 point for you");
 
         ContentValues row = new ContentValues();
-        row.put("score",MainActivity.totalscore);
-        MainActivity.database.update("score",row,"playtimes=?",
+        row.put("totalscore",MainActivity.totalscore);
+        long i = MainActivity.database.update("score",row,"playtimes=?",
                 new String[]{String.valueOf(MainActivity.playtime)});
-
 
         Cursor cursor = MainActivity.database.query("question",null,
                 "idquestion=?",new String[]{String.valueOf(PlayActivity.question.getIdquestion())},

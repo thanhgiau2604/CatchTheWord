@@ -16,7 +16,7 @@ public class GuideActivity extends AppCompatActivity {
         AddEvents();
     }
     private void AddControl() {
-        btnbackhome=findViewById(R.id.btnbackhome);
+        btnbackhome= this.<Button>findViewById(R.id.btnbackhome);
     }
 
     private void AddEvents() {
